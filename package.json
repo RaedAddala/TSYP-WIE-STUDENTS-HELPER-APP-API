@@ -1,0 +1,21 @@
+{
+  "name": "robotics-club-app-api",
+  "version": "0.0.1",
+  "description": "an api that serves a mobile app meant to help and monitor the progress of robotics clubs throughout the country",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Addala Raed",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "helmet": "^7.1.0",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
