@@ -5,23 +5,15 @@ import bodyParser from "body-parser";
 import helmet from "helmet";
 import cors from "cors";
 import morgan from "morgan";
-import compression from "compression";
+import compressor from "./middlewares/compression.js";
+import limiter from "./middlewares/rate-limiting.js";
 
 // Import Routes
-import  authRouter  from "./routes/auth.js";
-
-// Compression Filter callback function
-const shouldCompress = (req, res) => {
-  if (req.headers["x-no-compression"]) {
-    // don't compress responses if this request header is present
-    return false;
-  }
-  // fallback to standard compression
-  return compression.filter(req, res);
-};
+import authRouter from "./routes/auth.js";
 
 // Load .env Files
 const app = express();
+
 dotenvConfig();
 
 // Need to URI Encode the auth values else they will result in a wrong URL if some special characters are used
@@ -42,9 +34,8 @@ app.use(helmet());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(morgan("common"));
-app.use(
-  compression({ filter: shouldCompress, threshold: 0, level: 9, memLevel: 9 })
-);
+app.use(compressor);
+app.use(limiter);
 // Reduce Fingerprinting
 app.disable("x-powered-by");
 
