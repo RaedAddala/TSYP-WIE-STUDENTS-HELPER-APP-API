@@ -1,7 +1,9 @@
-const router = require("express").Router();
+import { Router } from "express";
+import User from "../models/User.js"
+const authRouter = Router();
 
-router.post("/login",(req,res,err)=>{
+authRouter.post("/login",(req,res)=>{
 
 });
 
-module.exports = router;
+export default authRouter;
