@@ -25,7 +25,7 @@ const uri =
   process.env.CONNECTION_STRING_OPTIONS;
 
 // Connect to DB
-console.log(uri);
+console.log("[CONNECTING TO DB ... ]!");
 mongooseConnect(uri);
 console.log("[CONNECTED TO DB SUCCESSFULY]!");
 
@@ -36,6 +36,7 @@ app.use(bodyParser.json());
 app.use(morgan("common"));
 app.use(compressor);
 app.use(limiter);
+
 // Reduce Fingerprinting
 app.disable("x-powered-by");
 
