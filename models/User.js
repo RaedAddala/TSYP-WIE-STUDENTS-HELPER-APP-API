@@ -33,9 +33,14 @@ const userSchema = new mongoose.Schema({
     min: 8,
     max: 1024,
   },
+  Salt: { type: String, required: true },
   date: {
     type: Date,
     default: Date.now,
+  },
+  SuperUser: {
+    type: Boolean,
+    default: false,
   },
 });
 const User = mongoose.model("User", userSchema);
